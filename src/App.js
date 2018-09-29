@@ -4,6 +4,11 @@ import { Icon, Slider } from "@blueprintjs/core";
 import 'react-widgets/dist/css/react-widgets.css';
 import Multiselect from 'react-widgets/lib/Multiselect'
 
+// Useful:
+// https://jquense.github.io/react-widgets/api/Multiselect/
+// https://blueprintjs.com/docs/#core
+// https://dev.to/tylermcginnis/a-comprehensive-guide-to-reactjs-in-2018--4nbc
+
 let SCREENS = [
   {device: 'iPhone 7', os: 'iOS', width: "750", height: "1334"},
   {device: 'iPhone 7+', os: 'iOS', width: "1080", height: "1920"},
