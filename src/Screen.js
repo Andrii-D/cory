@@ -21,8 +21,7 @@ const Smartphone = styled.div`
         transform: translate(-50%, -50%);
         background: #333;
         border-radius: 10px;
-    }
-    
+    } 
     ::after {
         content: '';
         display: block;
@@ -38,19 +37,15 @@ const Smartphone = styled.div`
 `;
 
 const SmartphoneContent = styled.div`
-    {
-        width: 100%;
-        height: 100%;
-        background: white;
-    }
+    width: 100%;
+    height: 100%;
+    background: white;
 `;
 
 const StyledIframe = styled.iframe`
-    {
-        width:100%;
-        height:100%;
-        border:none;
-    }
+    width:100%;
+    height:100%;
+    border:none;
 `;
 
 class Screen extends Component {
