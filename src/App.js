@@ -13,9 +13,9 @@ import Screen from './Screen'
 // https://dev.to/tylermcginnis/a-comprehensive-guide-to-reactjs-in-2018--4nbc
 
 const SCREENS = [
-  {device: 'iPhone 7', os: 'iOS', width: "750", height: "1334"},
-  {device: 'iPhone 7+', os: 'iOS', width: "1080", height: "1920"},
-  {device: 'Samsung Galaxy S6', os: 'Android', width: "1440", height: "2560"}
+  {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334},
+  {device: 'iPhone 7+', os: 'iOS', width: 1080, height: 1920},
+  {device: 'Samsung Galaxy S6', os: 'Android', width: 1440, height: 2560}
 ]
 const LANGUAGES = ['en', 'ua', 'ru', 'es', 'pl', 'fr']
 

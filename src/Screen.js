@@ -56,8 +56,8 @@ const StyledIframe = styled.iframe`
 class Screen extends Component {
     render() {
         let scale = this.props.scale/100;
-        let scaledWidth = (this.props.item.width * scale) + 'px';
-        let scaledHeight = (this.props.item.height * scale) + 'px';
+        let scaledWidth = (this.props.item.width * scale + 32) + 'px';
+        let scaledHeight = (this.props.item.height * scale + 120) + 'px';
         return (
             <Smartphone width={scaledWidth} height={scaledHeight}>
                 <SmartphoneContent>
@@ -73,7 +73,7 @@ class Screen extends Component {
 }
 Screen.defaultProps = {
     src: "http://example.com",
-    item: {device: 'iPhone 7', os: 'iOS', width: "750", height: "1334"}
+    item: {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334}
 }
 
 export default Screen;
