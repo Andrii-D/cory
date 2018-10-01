@@ -48,7 +48,8 @@ class App extends Component {
         </header>
         <br></br>
         <Grid container spacing={24}>
-          <Grid item xs>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={2}>
             <Slider
               min={0}
               max={100}
@@ -68,13 +69,14 @@ class App extends Component {
               onChange={value => this.setState({ screens: value })}
             />
           </Grid>
-          <Grid item xs>
+          <Grid item xs={2}>
             <Multiselect
               data={LANGUAGES}
               defaultValue={this.state.languages}
               onChange={value => this.setState({ languages: value })}
             />
           </Grid>
+          <Grid item xs={1}></Grid>
         </Grid>
 
         <br/>
