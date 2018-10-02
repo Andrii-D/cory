@@ -14,8 +14,13 @@ import Screen from './Screen'
 const SCREENS = [
   {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334},
   {device: 'iPhone 7+', os: 'iOS', width: 1080, height: 1920},
-  {device: 'Samsung Galaxy S6', os: 'Android', width: 1440, height: 2560}
-]
+  {device: 'Samsung Galaxy S6', os: 'Android', width: 1440, height: 2560},
+  {device: 'Google Pixel', os: 'Android', width: 1800, height: 1920},
+  {device: 'iPhone 4', os: 'iOS', width: 640, height: 960},
+  {device: 'Nokia Lumia', os: 'Windows', width: 480, height: 800},
+  {device: 'iPhone 3G', os: 'iOS', width: 320, height: 480},
+].map(item => { return {ratio: (item.height/item.width).toFixed(2), ...item}})
+
 const LANGUAGES = ['en', 'ua', 'ru', 'es', 'pl', 'fr']
 
 let ScreenItem = ({ item }) => (
@@ -34,7 +39,8 @@ class App extends Component {
       scale: 50,
       screens: [SCREENS[0], SCREENS[1]],
       languages: [LANGUAGES[0], LANGUAGES[1]],
-      src: "https://www.pexels.com"
+      // src: "https://www.pexels.com"
+      src: "http://www.bbc.com"
     };
 
     this.refreshScreen = this.refreshScreen.bind(this)
@@ -72,7 +78,7 @@ class App extends Component {
                   textField='device'
                   valueField='width'
                   defaultValue={this.state.screens}
-                  groupBy='os'
+                  groupBy='ratio'
                   itemComponent={ScreenItem}
                   onChange={value => this.setState({ screens: value })}
                 />
