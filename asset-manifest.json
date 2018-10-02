@@ -1,17 +1,17 @@
 {
   "main.css": "/cory/static/css/main.253159b6.chunk.css",
-  "main.js": "/cory/static/js/main.33198a4f.chunk.js",
-  "main.js.map": "/cory/static/js/main.33198a4f.chunk.js.map",
+  "main.js": "/cory/static/js/main.bc3a2755.chunk.js",
+  "main.js.map": "/cory/static/js/main.bc3a2755.chunk.js.map",
   "static/css/1.3024401e.chunk.css": "/cory/static/css/1.3024401e.chunk.css",
   "static/js/1.953a276a.chunk.js": "/cory/static/js/1.953a276a.chunk.js",
   "static/js/1.953a276a.chunk.js.map": "/cory/static/js/1.953a276a.chunk.js.map",
   "runtime~main.js": "/cory/static/js/runtime~main.ce6c499f.js",
   "runtime~main.js.map": "/cory/static/js/runtime~main.ce6c499f.js.map",
-  "static/media/App.css": "/cory/static/media/icons-16.10182c3e.eot",
-  "static/media/react-widgets.css": "/cory/static/media/loader-big.a770b679.gif",
+  "static/media/App.css": "/cory/static/media/icons-16.5bf5f8da.woff",
+  "static/media/react-widgets.css": "/cory/static/media/rw-widgets.792dcd18.svg",
   "static/css/main.253159b6.chunk.css.map": "/cory/static/css/main.253159b6.chunk.css.map",
   "static/css/1.3024401e.chunk.css.map": "/cory/static/css/1.3024401e.chunk.css.map",
   "index.html": "/cory/index.html",
-  "precache-manifest.45058bd2721a0298c4247aab8131454f.js": "/cory/precache-manifest.45058bd2721a0298c4247aab8131454f.js",
+  "precache-manifest.99a558fbed5870fbf2b153e93f7728e9.js": "/cory/precache-manifest.99a558fbed5870fbf2b153e93f7728e9.js",
   "service-worker.js": "/cory/service-worker.js"
 }
