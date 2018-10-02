@@ -32,10 +32,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      scale: 40,
+      scale: 50,
       screens: [SCREENS[0], SCREENS[1]],
       languages: [LANGUAGES[0], LANGUAGES[1]],
-      src: "http://example.com"
+      src: "http://www.bbc.com"
     };
 
   }
@@ -48,15 +48,17 @@ class App extends Component {
         </header>
         <br></br>
         <Grid container spacing={24}>
-          <Grid item xs={1}></Grid>
           <Grid item xs={2}>
             <Slider
               min={0}
               max={100}
-              labelStepSize={10}
+              labelStepSize={25}
               onChange={value => this.setState({ scale: value })}
               value={this.state.scale}
             />
+          </Grid>
+          <Grid item xs={3}>
+          <input class="bp3-input bp3-large bp3-fill .modifier" type="text" placeholder="Text input" dir="auto" />
           </Grid>
           <Grid item xs>
             <Multiselect
@@ -76,7 +78,6 @@ class App extends Component {
               onChange={value => this.setState({ languages: value })}
             />
           </Grid>
-          <Grid item xs={1}></Grid>
         </Grid>
 
         <br/>

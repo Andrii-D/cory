@@ -46,6 +46,7 @@ const StyledIframe = styled.iframe`
     width:100%;
     height:100%;
     border:none;
+    overflow: auto;
 `;
 
 class Screen extends Component {

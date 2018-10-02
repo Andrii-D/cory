@@ -1,6 +1,6 @@
 {
   "name": "cory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://andrii-d.github.io/cory",
   "dependencies": {
@@ -9,7 +9,7 @@
     "gh-pages": "^2.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.3",
     "react-widgets": "^4.4.5",
     "styled-components": "^3.4.9"
   },
@@ -23,10 +23,15 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.8.0",
-    "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
