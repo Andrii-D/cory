@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Icon, Slider } from "@blueprintjs/core";
 import 'react-widgets/dist/css/react-widgets.css';
 import Multiselect from 'react-widgets/lib/Multiselect'
-// import { Button, Card, Elevation } from "@blueprintjs/core";
+import { Navbar, Alignment, Slider, Button } from "@blueprintjs/core";
 import Grid from '@material-ui/core/Grid';
 import Screen from './Screen'
 
@@ -35,50 +34,58 @@ class App extends Component {
       scale: 50,
       screens: [SCREENS[0], SCREENS[1]],
       languages: [LANGUAGES[0], LANGUAGES[1]],
-      src: "http://www.bbc.com"
+      src: "https://www.pexels.com"
     };
 
+    this.refreshScreen = this.refreshScreen.bind(this)
+
+  }
+  resetState() {
+    window.location.reload();
+  }
+  refreshScreen(e) {
+    this.setState({
+      src: e.target.value
+    })
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-        <Icon icon="projects" iconSize={60} />
-          <h1 className="App-title">Welcome to Cory</h1>
-        </header>
-        <br></br>
-        <Grid container spacing={24}>
-          <Grid item xs={2}>
-            <Slider
-              min={0}
-              max={100}
-              labelStepSize={25}
-              onChange={value => this.setState({ scale: value })}
-              value={this.state.scale}
-            />
-          </Grid>
-          <Grid item xs={3}>
-          <input class="bp3-input bp3-large bp3-fill .modifier" type="text" placeholder="Text input" dir="auto" />
-          </Grid>
-          <Grid item xs>
-            <Multiselect
-              data={SCREENS}
-              textField='device'
-              valueField='width'
-              defaultValue={this.state.screens}
-              groupBy='os'
-              itemComponent={ScreenItem}
-              onChange={value => this.setState({ screens: value })}
-            />
-          </Grid>
-          <Grid item xs={2}>
-            <Multiselect
-              data={LANGUAGES}
-              defaultValue={this.state.languages}
-              onChange={value => this.setState({ languages: value })}
-            />
-          </Grid>
-        </Grid>
+
+        <Navbar fixedToTop={true}>
+            <Navbar.Group align={Alignment.LEFT}>
+                <Navbar.Heading>CORY</Navbar.Heading>
+                <Navbar.Divider />
+                <Slider
+                  min={0}
+                  max={100}
+                  labelStepSize={25}
+                  onChange={value => this.setState({ scale: value })}
+                  value={this.state.scale}
+                  labelRenderer={false}
+                />
+                <Navbar.Divider />
+                <input className="bp3-input" type="text" placeholder="Text input" dir="auto" value={this.state.src} onChange={this.refreshScreen} />
+                <Navbar.Divider />
+                <Multiselect
+                  data={SCREENS}
+                  textField='device'
+                  valueField='width'
+                  defaultValue={this.state.screens}
+                  groupBy='os'
+                  itemComponent={ScreenItem}
+                  onChange={value => this.setState({ screens: value })}
+                />
+                <Navbar.Divider />
+                <Multiselect
+                  data={LANGUAGES}
+                  defaultValue={this.state.languages}
+                  onChange={value => this.setState({ languages: value })}
+                />
+                <Navbar.Divider />
+                  <Button icon="heart-broken" minimal={true} onClick={this.resetState}/>
+            </Navbar.Group>
+        </Navbar>
 
         <br/>
         {this.state.screens.map((screen) => {
