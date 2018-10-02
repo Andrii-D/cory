@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "86035194a2ecaec2e33d6deae8ecf2ab",
-    "url": "/cory/static/media/icons-20.86035194.eot"
+    "revision": "5bf5f8dab6f35fab3ae560d8cc2923b8",
+    "url": "/cory/static/media/icons-16.5bf5f8da.woff"
   },
   {
     "revision": "110abedc5ddf22c9d93f",
@@ -20,28 +20,28 @@ self.__precacheManifest = [
     "url": "/cory/static/js/runtime~main.ce6c499f.js"
   },
   {
+    "revision": "86035194a2ecaec2e33d6deae8ecf2ab",
+    "url": "/cory/static/media/icons-20.86035194.eot"
+  },
+  {
     "revision": "10182c3e4e1cdcfd93ba19610e97c790",
     "url": "/cory/static/media/icons-16.10182c3e.eot"
-  },
-  {
-    "revision": "29c95c2d68c76de3ee30f7b2c0220da9",
-    "url": "/cory/static/media/icons-16.29c95c2d.ttf"
-  },
-  {
-    "revision": "5bf5f8dab6f35fab3ae560d8cc2923b8",
-    "url": "/cory/static/media/icons-16.5bf5f8da.woff"
-  },
-  {
-    "revision": "110abedc5ddf22c9d93f",
-    "url": "/cory/static/js/main.110abedc.chunk.js"
   },
   {
     "revision": "54fbc883d110b217f19a4cfe3898979d",
     "url": "/cory/static/media/icons-20.54fbc883.woff"
   },
   {
+    "revision": "110abedc5ddf22c9d93f",
+    "url": "/cory/static/js/main.110abedc.chunk.js"
+  },
+  {
     "revision": "05a65153efe56028d343c10b53faa583",
     "url": "/cory/static/media/icons-20.05a65153.ttf"
+  },
+  {
+    "revision": "29c95c2d68c76de3ee30f7b2c0220da9",
+    "url": "/cory/static/media/icons-16.29c95c2d.ttf"
   },
   {
     "revision": "bc7c4a59f924cf037aad6e1f9edba366",
