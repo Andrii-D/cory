@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Smartphone = styled.div`
     position: relative;
@@ -49,27 +50,32 @@ const StyledIframe = styled.iframe`
     overflow: auto;
 `;
 
-class Screen extends Component {
-    render() {
-        let scale = this.props.scale/100;
-        let scaledWidth = (this.props.item.width * scale + 32) + 'px';
-        let scaledHeight = (this.props.item.height * scale + 120) + 'px';
-        return (
-            <Smartphone width={scaledWidth} height={scaledHeight}>
-                <SmartphoneContent>
-                    <StyledIframe sandbox="allow-same-origin allow-forms allow-scripts" 
-                            seamless="" 
-                            src={this.props.src} 
-                            title={this.props.item.device}>
-                    </StyledIframe>
-                </SmartphoneContent>
-            </Smartphone>
-        );
-    }
+const Screen = ({scale = 1, src, item}) => {
+    let scaledWidth = (item.width * scale / 100 + 32) + 'px';
+    let scaledHeight = (item.height * scale /100 + 120) + 'px';
+    return (
+        <Smartphone width={scaledWidth} height={scaledHeight}>
+            <SmartphoneContent>
+                <StyledIframe sandbox="allow-same-origin allow-forms allow-scripts" 
+                        seamless="" 
+                        src={src} 
+                        title={item.device}>
+                </StyledIframe>
+            </SmartphoneContent>
+        </Smartphone>
+    );
 }
-Screen.defaultProps = {
-    src: "http://example.com",
-    item: {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334}
+
+Screen.propTypes = {
+    scale: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired,
+    item: PropTypes.shape({
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+        device: PropTypes.string.isRequired,
+        os: PropTypes.number.isRequired
+    })
 }
+PropTypes.checkPropTypes()
 
 export default Screen;

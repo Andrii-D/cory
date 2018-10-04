@@ -12,7 +12,7 @@ import {setScale, setLanguages, setScreens, setUrl} from './actions'
 // https://blueprintjs.com/docs/#core
 // https://dev.to/tylermcginnis/a-comprehensive-guide-to-reactjs-in-2018--4nbc
 // https://www.valentinog.com/blog/react-redux-tutorial-beginners/
-
+// https://itnext.io/react-component-class-vs-stateless-component-e3797c7d23ab
 export const SCREENS = [
   {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334},
   {device: 'iPhone 7+', os: 'iOS', width: 1080, height: 1920},
