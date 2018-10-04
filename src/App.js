@@ -5,7 +5,7 @@ import {Navbar, Alignment, Slider, Button} from '@blueprintjs/core';
 import Grid from '@material-ui/core/Grid';
 import Screen from './Screen';
 import {connect} from 'react-redux';
-import {setScale, setLanguages, setScreens, setUrl} from './actions';
+import {setScale, setLanguages, setScreens, setUrl, resetState} from './actions';
 import PropTypes from 'prop-types';
 
 // Useful:
@@ -44,6 +44,7 @@ const ConnectedApp = ({
   setUrl,
   setLanguages,
   setScreens,
+  resetState,
 }) => {
   return (
     <div className="App">
@@ -88,7 +89,7 @@ const ConnectedApp = ({
           <Button
             icon="heart-broken"
             minimal={true}
-            onClick={() => window.location.reload ()}
+            onClick={() => resetState ()}
           />
         </Navbar.Group>
       </Navbar>
@@ -124,6 +125,7 @@ ConnectedApp.propTypes = {
   setScale: PropTypes.func.isRequired,
   setLanguages: PropTypes.func.isRequired,
   setScreens: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -141,6 +143,7 @@ const mapDispatchToProps = dispatch => {
     setUrl: url => dispatch (setUrl (url)),
     setLanguages: languages => dispatch (setLanguages (languages)),
     setScreens: screens => dispatch (setScreens (screens)),
+    resetState: () => dispatch (resetState ()),
   };
 };
 
