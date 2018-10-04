@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'react-widgets/dist/css/react-widgets.css';
 import Multiselect from 'react-widgets/lib/Multiselect'
 import { Navbar, Alignment, Slider, Button } from "@blueprintjs/core";
@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Screen from './Screen'
 import { connect } from "react-redux";
 import {setScale, setLanguages, setScreens, setUrl} from './actions'
+import PropTypes from 'prop-types'
 
 // Useful:
 // https://jquense.github.io/react-widgets/api/Multiselect/
@@ -33,8 +34,7 @@ let ScreenItem = ({ item }) => (
 );
 
 
-class ConnectedApp extends Component {
-  render() {
+const ConnectedApp = ({scale, src, languages, screens, setScale, setUrl, setLanguages, setScreens}) => {
     return (
       <div className="App">
         <Navbar fixedToTop={true}>
@@ -45,32 +45,32 @@ class ConnectedApp extends Component {
                   min={0}
                   max={100}
                   labelStepSize={25}
-                  onChange={value => this.props.setScale(value)}
-                  value={this.props.scale}
+                  onChange={value => setScale(value)}
+                  value={scale}
                   labelRenderer={false}
                 />
                 <Navbar.Divider />
                 <input className="bp3-input" type="text" 
                        placeholder="Text input" 
                        dir="auto" 
-                       value={this.props.src} 
-                       onChange={e => this.props.setUrl(e.target.value)} 
+                       value={src} 
+                       onChange={e => setUrl(e.target.value)} 
                 />
                 <Navbar.Divider />
                 <Multiselect
                   data={SCREENS}
                   textField='device'
                   valueField='width'
-                  defaultValue={this.props.screens}
+                  defaultValue={screens}
                   groupBy='ratio'
                   itemComponent={ScreenItem}
-                  onChange={value => this.props.setScreens(value)}
+                  onChange={value => setScreens(value)}
                 />
                 <Navbar.Divider />
                 <Multiselect
                   data={LANGUAGES}
-                  defaultValue={this.props.languages}
-                  onChange={value => this.props.setLanguages(value)}
+                  defaultValue={languages}
+                  onChange={value => setLanguages(value)}
                 />
                 <Navbar.Divider />
                   <Button icon="heart-broken" minimal={true} onClick={() => window.location.reload()}/>
@@ -78,14 +78,13 @@ class ConnectedApp extends Component {
         </Navbar>
 
         <br/>
-        {this.props.screens.map((screen) => {
+        {screens.map((screen) => {
           return (
             <Grid container spacing={24} key={screen.device}>
-              {this.props.languages.map((language) => {
-                let src = this.props.src.replace('/en/', '/'+language+'/')
+              {languages.map((language) => { 
                 return (
                   <Grid item xs key={language}>    
-                    <Screen item={screen} scale={this.props.scale} src={src} /> 
+                    <Screen item={screen} scale={scale} src={src.replace('/en/', '/'+language+'/')} /> 
                   </Grid>
                 )
               })}
@@ -94,7 +93,18 @@ class ConnectedApp extends Component {
         })}  
       </div>
     );
-  }
+
+}
+
+ConnectedApp.propTypes = {
+  scale: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  languages: PropTypes.array.isRequired,
+  screens: PropTypes.array.isRequired,
+  setUrl: PropTypes.func.isRequired,
+  setScale: PropTypes.func.isRequired,
+  setLanguages: PropTypes.func.isRequired,
+  setScreens: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
