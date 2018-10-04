@@ -1,26 +1,26 @@
-import {SET_LANGUAGES, SET_SCALE, SET_SCREENS, SET_URL} from "./action-types"
-import {LANGUAGES, SCREENS} from "./App"
+import {SET_LANGUAGES, SET_SCALE, SET_SCREENS, SET_URL} from './action-types';
+import {LANGUAGES, SCREENS} from './App';
 const initialState = {
-    scale: 50,
-    screens: [SCREENS[0], SCREENS[1]],
-    languages: [LANGUAGES[0], LANGUAGES[1]],
-    // src: "https://www.pexels.com"
-    src: "http://www.bbc.com"
+  scale: 50,
+  screens: [SCREENS[0], SCREENS[1]],
+  languages: [LANGUAGES[0], LANGUAGES[1]],
+  // src: "https://www.pexels.com"
+  src: 'http://www.bbc.com',
 };
 
 const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case SET_SCALE:
-        return { ...state, scale: action.payload};
+  switch (action.type) {
+    case SET_SCALE:
+      return {...state, scale: action.payload};
     case SET_URL:
-        return { ...state, src: action.payload};
+      return {...state, src: action.payload};
     case SET_SCREENS:
-        return { ...state, screens: action.payload};
+      return {...state, screens: action.payload};
     case SET_LANGUAGES:
-        return { ...state, languages: action.payload};
+      return {...state, languages: action.payload};
     default:
-        return state;
-    }
+      return state;
+  }
 };
 
 export default rootReducer;

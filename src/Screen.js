@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Smartphone = styled.div`
     position: relative;
@@ -51,31 +51,31 @@ const StyledIframe = styled.iframe`
 `;
 
 const Screen = ({scale = 1, src, item}) => {
-    let scaledWidth = (item.width * scale / 100 + 32) + 'px';
-    let scaledHeight = (item.height * scale /100 + 120) + 'px';
-    return (
-        <Smartphone width={scaledWidth} height={scaledHeight}>
-            <SmartphoneContent>
-                <StyledIframe sandbox="allow-same-origin allow-forms allow-scripts" 
-                        seamless="" 
-                        src={src} 
-                        title={item.device}>
-                </StyledIframe>
-            </SmartphoneContent>
-        </Smartphone>
-    );
-}
+  let scaledWidth = item.width * scale / 100 + 32 + 'px';
+  let scaledHeight = item.height * scale / 100 + 120 + 'px';
+  return (
+    <Smartphone width={scaledWidth} height={scaledHeight}>
+      <SmartphoneContent>
+        <StyledIframe
+          sandbox="allow-same-origin allow-forms allow-scripts"
+          seamless=""
+          src={src}
+          title={item.device}
+        />
+      </SmartphoneContent>
+    </Smartphone>
+  );
+};
 
 Screen.propTypes = {
-    scale: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    item: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-        device: PropTypes.string.isRequired,
-        os: PropTypes.number.isRequired
-    })
-}
-PropTypes.checkPropTypes()
+  scale: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  item: PropTypes.shape ({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    device: PropTypes.string.isRequired,
+    os: PropTypes.string.isRequired,
+  }),
+};
 
 export default Screen;
