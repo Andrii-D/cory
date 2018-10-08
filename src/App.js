@@ -5,7 +5,13 @@ import {Navbar, Alignment, Slider, Button} from '@blueprintjs/core';
 import Grid from '@material-ui/core/Grid';
 import Screen from './Screen';
 import {connect} from 'react-redux';
-import {setScale, setLanguages, setScreens, setUrl, resetState} from './actions';
+import {
+  setScale,
+  setLanguages,
+  setScreens,
+  setUrl,
+  resetState,
+} from './actions';
 import PropTypes from 'prop-types';
 
 // Useful:
@@ -22,16 +28,13 @@ export const SCREENS = [
   {device: 'iPhone 4', os: 'iOS', width: 640, height: 960},
   {device: 'Nokia Lumia', os: 'Windows', width: 480, height: 800},
   {device: 'iPhone 3G', os: 'iOS', width: 320, height: 480},
-].map (item => {
-  return {ratio: (item.height / item.width).toFixed (2), ...item};
-});
+].map(item => ({ratio: (item.height / item.width).toFixed(2), ...item}));
 
 export const LANGUAGES = ['en', 'ua', 'ru', 'es', 'pl', 'fr'];
 
 let ScreenItem = ({item}) => (
   <span>
-    <strong>{item.device}</strong>
-    {' ' + item.width + 'x' + item.height}
+    <strong>{item.device}</strong>  {item.width}x{item.height}
   </span>
 );
 

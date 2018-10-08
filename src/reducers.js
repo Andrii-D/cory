@@ -1,23 +1,28 @@
-import {SET_LANGUAGES, SET_SCALE, SET_SCREENS, SET_URL, RESET_STATE} from './action-types';
+import {
+  SET_LANGUAGES,
+  SET_SCALE,
+  SET_SCREENS,
+  SET_URL,
+  RESET_STATE,
+} from './action-types';
 import {LANGUAGES, SCREENS} from './App';
+import { combineReducers } from 'redux'
+
 const initialState = {
   scale: 50,
   screens: [SCREENS[0], SCREENS[1]],
   languages: [LANGUAGES[0], LANGUAGES[1]],
-  // src: "https://www.pexels.com"
   src: 'http://www.bbc.com',
+// src: "https://www.pexels.com"
 };
 
-const rootReducer = (state = initialState, action) => {
+const scaleReducer = (state = initialState.scale, action) => (action.type === SET_SCALE) ? action.payload : state
+const srcReducer = (state = initialState.src, action) => (action.type === SET_URL) ? action.payload : state
+const languagesReducer = (state = initialState.languages, action) => (action.type === SET_LANGUAGES) ? action.payload : state
+const screensReducer = (state = initialState.screens, action) => (action.type === SET_SCREENS) ? action.payload : state
+
+const resetReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SCALE:
-      return {...state, scale: action.payload};
-    case SET_URL:
-      return {...state, src: action.payload};
-    case SET_SCREENS:
-      return {...state, screens: action.payload};
-    case SET_LANGUAGES:
-      return {...state, languages: action.payload};
     case RESET_STATE:
       return {...initialState};
     default:
@@ -25,4 +30,10 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
+const rootReducer = combineReducers({
+    scale: scaleReducer,
+    src: srcReducer,
+    screens: screensReducer,
+    languages: languagesReducer
+});
 export default rootReducer;

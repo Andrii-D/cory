@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import {string, number, shape} from 'prop-types';
 
 const Smartphone = styled.div`
     position: relative;
@@ -51,8 +51,8 @@ const StyledIframe = styled.iframe`
 `;
 
 const Screen = ({scale = 1, src, item}) => {
-  let scaledWidth = item.width * scale / 100 + 32 + 'px';
-  let scaledHeight = item.height * scale / 100 + 120 + 'px';
+  const scaledWidth = item.width * scale / 100 + 32 + 'px';
+  const scaledHeight = item.height * scale / 100 + 120 + 'px';
   return (
     <Smartphone width={scaledWidth} height={scaledHeight}>
       <SmartphoneContent>
@@ -68,13 +68,13 @@ const Screen = ({scale = 1, src, item}) => {
 };
 
 Screen.propTypes = {
-  scale: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
-  item: PropTypes.shape ({
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    device: PropTypes.string.isRequired,
-    os: PropTypes.string.isRequired,
+  scale: number.isRequired,
+  src: string.isRequired,
+  item: shape({
+    width: number.isRequired,
+    height: number.isRequired,
+    device: string.isRequired,
+    os: string.isRequired,
   }),
 };
 
