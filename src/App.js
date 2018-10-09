@@ -10,7 +10,6 @@ import {
   setLanguages,
   setScreens,
   setUrl,
-  resetState,
 } from './actions';
 import PropTypes from 'prop-types';
 
@@ -80,19 +79,19 @@ const ConnectedApp = ({
             defaultValue={screens}
             groupBy="ratio"
             itemComponent={ScreenItem}
-            onChange={value => setScreens (value)}
+            onChange={value => setScreens(value)}
           />
           <Navbar.Divider />
           <Multiselect
             data={LANGUAGES}
             defaultValue={languages}
-            onChange={value => setLanguages (value)}
+            onChange={value => setLanguages(value)}
           />
           <Navbar.Divider />
           <Button
             icon="heart-broken"
             minimal={true}
-            onClick={() => resetState ()}
+            onClick={() => window.path.reload()}
           />
         </Navbar.Group>
       </Navbar>
@@ -128,7 +127,6 @@ ConnectedApp.propTypes = {
   setScale: PropTypes.func.isRequired,
   setLanguages: PropTypes.func.isRequired,
   setScreens: PropTypes.func.isRequired,
-  resetState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -146,7 +144,6 @@ const mapDispatchToProps = dispatch => {
     setUrl: url => dispatch (setUrl (url)),
     setLanguages: languages => dispatch (setLanguages (languages)),
     setScreens: screens => dispatch (setScreens (screens)),
-    resetState: () => dispatch (resetState ()),
   };
 };
 
