@@ -25,12 +25,16 @@ export const setSrc = createAction('SET_SRC');
 export const setScreens = createAction('SET_SCREENS');
 export const setLanguages = createAction('SET_LANGUAGES');
 
+// TODO: doesn't work correctly (languages and screens multiselect is not re-rendered)
+export const resetState = createAction('RESET_STATE');
+
 const reducer = handleActions(
   {
     [setScale]: (state, action) => ({ ...state, scale: action.payload}),
     [setSrc]: (state, action) => ({ ...state, src: action.payload}),
     [setLanguages]: (state, action) => ({ ...state, languages: action.payload}),
     [setScreens]: (state, action) => ({ ...state, screens: action.payload}),
+    [resetState]: () => ({ ...initialState}),
   },
   initialState
 );

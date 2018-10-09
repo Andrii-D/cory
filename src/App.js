@@ -10,6 +10,7 @@ import {
   setLanguages,
   setScreens,
   setSrc,
+  resetState,
   LANGUAGES,
   SCREENS
 } from './reducers';
@@ -37,6 +38,7 @@ const ConnectedApp = ({
   setUrl,
   setLanguages,
   setScreens,
+  resetState,
 }) => {
   return (
     <div className="App">
@@ -59,7 +61,7 @@ const ConnectedApp = ({
             placeholder="Text input"
             dir="auto"
             value={src}
-            onChange={e => setUrl (e.target.value)}
+            onChange={e => setUrl(e.target.value)}
           />
           <Navbar.Divider />
           <Multiselect
@@ -81,7 +83,7 @@ const ConnectedApp = ({
           <Button
             icon="heart-broken"
             minimal={true}
-            onClick={() => window.path.reload()}
+            onClick={() => resetState()}
           />
         </Navbar.Group>
       </Navbar>
@@ -117,6 +119,7 @@ ConnectedApp.propTypes = {
   setScale: PropTypes.func.isRequired,
   setLanguages: PropTypes.func.isRequired,
   setScreens: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -134,6 +137,7 @@ const mapDispatchToProps = dispatch => {
     setUrl: url => dispatch(setSrc(url)),
     setLanguages: languages => dispatch(setLanguages(languages)),
     setScreens: screens => dispatch(setScreens(screens)),
+    resetState: () => dispatch(resetState()),
   };
 };
 
