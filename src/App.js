@@ -6,11 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Screen from './Screen';
 import {connect} from 'react-redux';
 import {
-  setScale,
-  setLanguages,
-  setScreens,
-  setSrc,
   resetState,
+  abstractSetter,
   LANGUAGES,
   SCREENS
 } from './reducers';
@@ -34,11 +31,8 @@ const ConnectedApp = ({
   src,
   languages,
   screens,
-  setScale,
-  setUrl,
-  setLanguages,
-  setScreens,
   resetState,
+  abstractSetter,
 }) => {
   return (
     <div className="App">
@@ -50,7 +44,7 @@ const ConnectedApp = ({
             min={0}
             max={100}
             labelStepSize={25}
-            onChange={value => setScale (value)}
+            onChange={value => abstractSetter({value: value, type: 'scale'})}
             value={scale}
             labelRenderer={false}
           />
@@ -61,7 +55,7 @@ const ConnectedApp = ({
             placeholder="Text input"
             dir="auto"
             value={src}
-            onChange={e => setUrl(e.target.value)}
+            onChange={e => abstractSetter({value: e.target.value, type: 'src'})}
           />
           <Navbar.Divider />
           <Multiselect
@@ -71,13 +65,13 @@ const ConnectedApp = ({
             defaultValue={screens}
             groupBy="ratio"
             itemComponent={ScreenItem}
-            onChange={value => setScreens(value)}
+            onChange={value => abstractSetter({value: value, type: 'screens'})}
           />
           <Navbar.Divider />
           <Multiselect
             data={LANGUAGES}
             defaultValue={languages}
-            onChange={value => setLanguages(value)}
+            onChange={value => abstractSetter({value: value, type: 'languages'})}
           />
           <Navbar.Divider />
           <Button
@@ -98,7 +92,7 @@ const ConnectedApp = ({
                   <Screen
                     item={screen}
                     scale={scale}
-                    src={src.replace ('/en/', '/' + language + '/')}
+                    src={src.replace('/en/', '/' + language + '/')}
                   />
                 </Grid>
               );
@@ -115,10 +109,7 @@ ConnectedApp.propTypes = {
   src: PropTypes.string.isRequired,
   languages: PropTypes.array.isRequired,
   screens: PropTypes.array.isRequired,
-  setUrl: PropTypes.func.isRequired,
-  setScale: PropTypes.func.isRequired,
-  setLanguages: PropTypes.func.isRequired,
-  setScreens: PropTypes.func.isRequired,
+  abstractSetter: PropTypes.func.isRequired,
   resetState: PropTypes.func.isRequired,
 };
 
@@ -133,11 +124,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setScale: scale => dispatch(setScale(scale)),
-    setUrl: url => dispatch(setSrc(url)),
-    setLanguages: languages => dispatch(setLanguages(languages)),
-    setScreens: screens => dispatch(setScreens(screens)),
     resetState: () => dispatch(resetState()),
+    abstractSetter: (data) => dispatch(abstractSetter(data)),
   };
 };
 

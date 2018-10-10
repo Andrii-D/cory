@@ -20,21 +20,15 @@ const initialState = {
   // src: "https://www.pexels.com"
 };
 
-export const setScale = createAction('SET_SCALE');
-export const setSrc = createAction('SET_SRC');
-export const setScreens = createAction('SET_SCREENS');
-export const setLanguages = createAction('SET_LANGUAGES');
 
-// TODO: doesn't work correctly (languages and screens multiselect is not re-rendered)
-export const resetState = createAction('RESET_STATE');
+export const resetState = createAction('RESET_STATE'); // TODO: doesn't work correctly (languages and screens multiselect is not re-rendered)
+
+export const abstractSetter = createAction('SET');
 
 const reducer = handleActions(
   {
-    [setScale]: (state, action) => ({ ...state, scale: action.payload}),
-    [setSrc]: (state, action) => ({ ...state, src: action.payload}),
-    [setLanguages]: (state, action) => ({ ...state, languages: action.payload}),
-    [setScreens]: (state, action) => ({ ...state, screens: action.payload}),
     [resetState]: () => ({ ...initialState}),
+    [abstractSetter]: (state, {payload: {value, type}}) => { let newState = {...state}; newState[type] = value; return newState; },
   },
   initialState
 );
