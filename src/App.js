@@ -6,11 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Screen from './Screen';
 import {connect} from 'react-redux';
 import {
-  setScale,
-  setLanguages,
-  setScreens,
-  setUrl,
-} from './actions';
+  resetState,
+  abstractSetter,
+  LANGUAGES,
+  SCREENS
+} from './reducers';
 import PropTypes from 'prop-types';
 
 // Useful:
@@ -19,17 +19,6 @@ import PropTypes from 'prop-types';
 // https://dev.to/tylermcginnis/a-comprehensive-guide-to-reactjs-in-2018--4nbc
 // https://www.valentinog.com/blog/react-redux-tutorial-beginners/
 // https://itnext.io/react-component-class-vs-stateless-component-e3797c7d23ab
-export const SCREENS = [
-  {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334},
-  {device: 'iPhone 7+', os: 'iOS', width: 1080, height: 1920},
-  {device: 'Samsung Galaxy S6', os: 'Android', width: 1440, height: 2560},
-  {device: 'Google Pixel', os: 'Android', width: 1800, height: 1920},
-  {device: 'iPhone 4', os: 'iOS', width: 640, height: 960},
-  {device: 'Nokia Lumia', os: 'Windows', width: 480, height: 800},
-  {device: 'iPhone 3G', os: 'iOS', width: 320, height: 480},
-].map(item => ({ratio: (item.height / item.width).toFixed(2), ...item}));
-
-export const LANGUAGES = ['en', 'ua', 'ru', 'es', 'pl', 'fr'];
 
 let ScreenItem = ({item}) => (
   <span>
@@ -42,11 +31,8 @@ const ConnectedApp = ({
   src,
   languages,
   screens,
-  setScale,
-  setUrl,
-  setLanguages,
-  setScreens,
   resetState,
+  abstractSetter,
 }) => {
   return (
     <div className="App">
@@ -58,7 +44,7 @@ const ConnectedApp = ({
             min={0}
             max={100}
             labelStepSize={25}
-            onChange={value => setScale (value)}
+            onChange={value => abstractSetter({value: value, type: 'scale'})}
             value={scale}
             labelRenderer={false}
           />
@@ -69,7 +55,7 @@ const ConnectedApp = ({
             placeholder="Text input"
             dir="auto"
             value={src}
-            onChange={e => setUrl (e.target.value)}
+            onChange={e => abstractSetter({value: e.target.value, type: 'src'})}
           />
           <Navbar.Divider />
           <Multiselect
@@ -79,19 +65,19 @@ const ConnectedApp = ({
             defaultValue={screens}
             groupBy="ratio"
             itemComponent={ScreenItem}
-            onChange={value => setScreens(value)}
+            onChange={value => abstractSetter({value: value, type: 'screens'})}
           />
           <Navbar.Divider />
           <Multiselect
             data={LANGUAGES}
             defaultValue={languages}
-            onChange={value => setLanguages(value)}
+            onChange={value => abstractSetter({value: value, type: 'languages'})}
           />
           <Navbar.Divider />
           <Button
             icon="heart-broken"
             minimal={true}
-            onClick={() => window.path.reload()}
+            onClick={() => resetState()}
           />
         </Navbar.Group>
       </Navbar>
@@ -106,7 +92,7 @@ const ConnectedApp = ({
                   <Screen
                     item={screen}
                     scale={scale}
-                    src={src.replace ('/en/', '/' + language + '/')}
+                    src={src.replace('/en/', '/' + language + '/')}
                   />
                 </Grid>
               );
@@ -123,10 +109,8 @@ ConnectedApp.propTypes = {
   src: PropTypes.string.isRequired,
   languages: PropTypes.array.isRequired,
   screens: PropTypes.array.isRequired,
-  setUrl: PropTypes.func.isRequired,
-  setScale: PropTypes.func.isRequired,
-  setLanguages: PropTypes.func.isRequired,
-  setScreens: PropTypes.func.isRequired,
+  abstractSetter: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -140,12 +124,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setScale: scale => dispatch (setScale (scale)),
-    setUrl: url => dispatch (setUrl (url)),
-    setLanguages: languages => dispatch (setLanguages (languages)),
-    setScreens: screens => dispatch (setScreens (screens)),
+    resetState: () => dispatch(resetState()),
+    abstractSetter: (data) => dispatch(abstractSetter(data)),
   };
 };
 
-const App = connect (mapStateToProps, mapDispatchToProps) (ConnectedApp);
+const App = connect(mapStateToProps, mapDispatchToProps) (ConnectedApp);
 export default App;

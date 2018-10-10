@@ -8,7 +8,7 @@ import setupStore from './store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {createGlobalStyle} from 'styled-components';
 
-const setup = setupStore ();
+const setup = setupStore();
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -19,13 +19,13 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-ReactDOM.render (
+ReactDOM.render(
   <Provider store={setup.store}>
     <PersistGate loading={null} persistor={setup.persistor}>
       <GlobalStyle />
       <App />
     </PersistGate>
   </Provider>,
-  document.getElementById ('root')
+  document.getElementById('root')
 );
-registerServiceWorker ();
+registerServiceWorker();

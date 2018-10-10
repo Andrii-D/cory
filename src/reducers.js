@@ -1,11 +1,16 @@
-import {
-  SET_LANGUAGES,
-  SET_SCALE,
-  SET_SCREENS,
-  SET_URL,
-} from './action-types';
-import {LANGUAGES, SCREENS} from './App';
-import {combineReducers} from 'redux';
+import { createAction, handleActions } from 'redux-actions';
+
+export const SCREENS = [
+  {device: 'iPhone 7', os: 'iOS', width: 750, height: 1334},
+  {device: 'iPhone 7+', os: 'iOS', width: 1080, height: 1920},
+  {device: 'Samsung Galaxy S6', os: 'Android', width: 1440, height: 2560},
+  {device: 'Google Pixel', os: 'Android', width: 1800, height: 1920},
+  {device: 'iPhone 4', os: 'iOS', width: 640, height: 960},
+  {device: 'Nokia Lumia', os: 'Windows', width: 480, height: 800},
+  {device: 'iPhone 3G', os: 'iOS', width: 320, height: 480},
+].map(item => ({ratio: (item.height / item.width).toFixed(2), ...item}));
+
+export const LANGUAGES = ['en', 'ua', 'ru', 'es', 'pl', 'fr'];
 
 const initialState = {
   scale: 50,
@@ -15,19 +20,17 @@ const initialState = {
   // src: "https://www.pexels.com"
 };
 
-const scaleReducer = (state = initialState.scale, action) =>
-  action.type === SET_SCALE ? action.payload : state;
-const srcReducer = (state = initialState.src, action) =>
-  action.type === SET_URL ? action.payload : state;
-const languagesReducer = (state = initialState.languages, action) =>
-  action.type === SET_LANGUAGES ? action.payload : state;
-const screensReducer = (state = initialState.screens, action) =>
-  action.type === SET_SCREENS ? action.payload : state;
 
-const rootReducer = combineReducers ({
-  scale: scaleReducer,
-  src: srcReducer,
-  screens: screensReducer,
-  languages: languagesReducer,
-});
-export default rootReducer;
+export const resetState = createAction('RESET_STATE'); // TODO: doesn't work correctly (languages and screens multiselect is not re-rendered)
+
+export const abstractSetter = createAction('SET');
+
+const reducer = handleActions(
+  {
+    [resetState]: () => ({ ...initialState}),
+    [abstractSetter]: (state, {payload: {value, type}}) => { let newState = {...state}; newState[type] = value; return newState; },
+  },
+  initialState
+);
+
+export default reducer;
